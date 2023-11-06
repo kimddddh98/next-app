@@ -1,34 +1,42 @@
 
 import axios from 'axios'
 import { Metadata } from 'next'
- 
 export const metadata: Metadata = {
   title: '크리에이트',
 }
- 
 
-const instance = axios.create({
-  // baseURL: BASE_URL,
+type DB = {
+  id: number
+  title: string
+  body: string,
+  created: string
+}
+
+const http = axios.create({
+  baseURL: 'http://localhost:3000',
   headers: {
     "Content-Type": "application/json",
   },
 });
-interface Data{
-  data:string
+
+async function getData() {
+  const res = await http.post("/api/hello")
+  const data:DB[] = await res.data
+  return data
 }
-export default async function CreatePage(props:any){
-  const res = await instance.post('http://localhost:3000/api/hello')
-  const data:Data = await res.data 
-  // const res = await fetch('http://localhost:3000/api/hello')
-  // const data = await res.json()
-  debugger
-  console.log(data)
-  // const result = await data.data
-  return (
-    <>
-     <h2>carete!!</h2>
-      <b>{JSON.stringify(data.data)}</b>
-    </>
- 
-  )
+
+export default async function createPage(){
+  const data = await getData()
+  
+  return(<>
+    <ul>
+    {data.map(day=>(
+              <li key={day.id} value={day.body}>{day.title}</li>
+          ))}
+    </ul>
+  </>)
 }
+
+
+
+

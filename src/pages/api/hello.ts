@@ -21,9 +21,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         throw error
       }
       console.log(results.rows)
-      res.status(200).json({
-        data:results.rows
-      })
+      res.status(200).json(
+        results.rows
+      )
     })
     // res.status(200).json({
     //   data:{data:'post'}
