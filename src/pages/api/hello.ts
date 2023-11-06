@@ -8,33 +8,33 @@ import {Client} from 'pg'
     port: 5432,
   });
   client.connect();
- 
+
+
+// export function GET(req: NextApiRequest, res: NextApiResponse) {
+
+// }
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('sdkljfaskjdfl')
-  // res.status(200).json({
-  //   data:{data:'성공'}
-  // })
-  if (req.method === 'POST') {
-    // Process a POST request
+  const { method } = req;
+  if (method === 'POST') {
     client.query('SELECT * FROM topic', (error, results) => {
       if (error) {
         throw error
       }
-      console.log(results.rows)
       res.status(200).json(
         results.rows
       )
     })
-    // res.status(200).json({
-    //   data:{data:'post'}
-    // })
-  } else {
-    res.status(200).json({
-      data:{data:'성공'}
-    })
-    // Handle any other HTTP method
+    
   }
+  else{
+    res.status(200).json({
+      data:'data'
+    })
+  }
+
 }
+
+
 
 
 
