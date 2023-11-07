@@ -3,9 +3,9 @@ import {Client} from 'pg'
   const client = new Client({
     user: "postgres",
     host: "localhost",
-    database: "firstpost",
-    password: "3496",
-    port: 5432,
+    database: process.env.NEXT_PUBLIC_POSTGRES_DATABASE,
+    password: process.env.NEXT_PUBLIC_POSTGRES_PASSWORD,
+    port:  process.env.NEXT_PUBLIC_POSTGRES_PORT,
   });
   client.connect();
 
