@@ -1,6 +1,10 @@
 
 import axios from 'axios'
 import { Metadata } from 'next'
+import Link from 'next/link'
+// import { useRouter } from 'next/router'
+
+// const router = useRouter()
 export const metadata: Metadata = {
   title: '크리에이트',
 }
@@ -35,6 +39,7 @@ export default async function createPage(){
   const httpGet = await get()
   console.log(httpGet)
   return(<>
+
     <ul>
     {data.map(day=>(
               <li key={day.id} value={day.body}>{day.title

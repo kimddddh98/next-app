@@ -1,6 +1,8 @@
-
+import NavBar from '@/app/component/NavBar'
 export default function Home() {
   return (
-    <main>hi</main>
+    <main>
+      홈
+    </main>
   )
 }
