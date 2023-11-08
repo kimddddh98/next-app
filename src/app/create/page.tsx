@@ -1,13 +1,5 @@
 
-import axios from 'axios'
-import { Metadata } from 'next'
-import Link from 'next/link'
-// import { useRouter } from 'next/router'
-
-// const router = useRouter()
-export const metadata: Metadata = {
-  title: '크리에이트',
-}
+import { http } from '../core';
 
 type DB = {
   id: number
@@ -16,12 +8,7 @@ type DB = {
   created: string
 }
 
-const http = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_PATH,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+
 
 async function get(){
   const res = await http("/api/hello")

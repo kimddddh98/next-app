@@ -1,8 +1,8 @@
-import NavBar from '@/app/component/NavBar'
-export default function Home() {
+
+export default function App() {
   return (
-    <main>
-      홈
+    <main className='wrap'>
+      path=/
     </main>
   )
 }

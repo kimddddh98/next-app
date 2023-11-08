@@ -1,10 +1,10 @@
 'use client'
 import Link from 'next/link'
 import style from './create.module.css'
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import MetaTag from './MetaTag';
 
 export default function NavBar(){
-  const router = useRouter()
   const path =usePathname()
   return(<>
     <nav>
@@ -18,5 +18,6 @@ export default function NavBar(){
         update
       </Link>
     </nav>
+    <MetaTag pathName={path?path:'my-next-app'}></MetaTag>
   </>)
 }
