@@ -29,6 +29,7 @@ export default async function RootLayout({
       <body >
         <PageLayout userInfo={userInfo[0]}/>
         {children}
+        
       </body>
     </html>
   )
