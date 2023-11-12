@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'update'
+  title: 'auth'
 }
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -10,7 +10,7 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-     {children}
+      {children}
     </section>
   )
 }

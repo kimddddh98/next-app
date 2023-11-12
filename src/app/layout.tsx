@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 // import './globals.css'
-import NavBar from '@/app/component/NavBar'
-import PageLayout from './component/PageLayout'
-import MetaTag from './component/MetaTag'
+import { http } from '@/app/core'
 
+import PageLayout from './component/PageLayout'
 
 export const metadata: Metadata = {
   title: {
@@ -13,20 +11,27 @@ export const metadata: Metadata = {
   },
   description: 'my first next app',
 }
+async function loginData() {
+  const res = await http.post('/api/auth')
+  const data:User[] = await res.data
+  return data
+}
 
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const userInfo = await loginData()
   return (
     <html lang="ko">
       <body >
-        <PageLayout>
-          {children}
-
-        </PageLayout>
+        <PageLayout userInfo={userInfo[0]}/>
+        {children}
       </body>
     </html>
   )
 }
+
+

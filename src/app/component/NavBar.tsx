@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import style from './create.module.css'
 import { usePathname } from 'next/navigation';
-import MetaTag from './MetaTag';
 
 export default function NavBar(){
   const path =usePathname()
@@ -17,7 +16,9 @@ export default function NavBar(){
       <Link href="/update" className={path==='/update'?style.active:''}>
         update
       </Link>
+      <Link href="/auth" className={path==='/auth'?style.active:''}>
+        auth
+      </Link>
     </nav>
-    <MetaTag pathName={path?path:'my-next-app'}></MetaTag>
   </>)
 }

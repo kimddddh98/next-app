@@ -1,15 +1,20 @@
-import NavBar from './NavBar'
+import NavBar from '@/app/component/NavBar'
+import SideBar from './SideBar'
 
-export default function PageLayout({
-  children,
+
+export default async function PageLayout({
+  userInfo
 }: {
-  children: React.ReactNode
+  userInfo:User
+
 }) {
+
+
   return (<>
     <NavBar/>
-    {children}
-    
-  </>
+    <SideBar userInfo={userInfo}/>
 
+
+  </>
   )
 }
