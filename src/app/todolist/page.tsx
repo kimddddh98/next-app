@@ -18,7 +18,7 @@ export default async function TodoListPage(){
       {todo.startdate}
       {todo.enddate}
       {todo.isdone}
-      <Link href={`todolist/${todo.title}/${todo.todoid}`}>상세보기</Link>
+      <Link href={`todolist/${todo.todoid}`}>상세보기</Link>
       
     </li>))}
   </>)
