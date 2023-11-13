@@ -9,14 +9,16 @@ async function getList() {
 export default async function TodoListPage(){
   
   const todos:TodoList[] = await getList()
+
+
   return (<>
     {!todos&&<h4>loginData...</h4>}
-    {todos?.map((todo)=>(<li key={todo.todoid}>
+    {todos?.map((todo)=>(<li key={todo.todoid} >
       {todo.title}
       {todo.startdate}
       {todo.enddate}
       {todo.isdone}
-      <Link href={`todolist/${todo.todoid}`}>상세보기</Link>
+      <Link href={`todolist/${todo.title}/${todo.todoid}`}>상세보기</Link>
       
     </li>))}
   </>)

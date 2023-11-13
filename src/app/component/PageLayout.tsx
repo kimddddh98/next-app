@@ -8,13 +8,9 @@ export default async function PageLayout({
   userInfo:User
 
 }) {
-
-
   return (<>
     <NavBar/>
     <SideBar userInfo={userInfo}/>
-
-
   </>
   )
 }
