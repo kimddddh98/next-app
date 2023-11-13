@@ -11,14 +11,29 @@ import {Client} from 'pg'
 
 export default function handler(req:NextApiRequest,res:NextApiResponse){
   if(req.method === "GET"){
-    client.query("select * from todolist",(err,reslut)=>{
-      if(err){
-        res.status(400)
-        throw err
-      }
-      else{
-        res.json(reslut.rows)
-      }
-    })
+    if(req.query.todoid){
+      client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,reslut)=>{
+        if(err){
+          res.status(400)
+          throw err
+        }
+        else{
+          res.json(reslut.rows)
+        }
+      })
+    }
+    else{
+      client.query("select * from todolist",(err,reslut)=>{
+        if(err){
+          res.status(400)
+          throw err
+        }
+        else{
+          res.json(reslut.rows)
+        }
+      })
+
+    }
+ 
   }
 }
