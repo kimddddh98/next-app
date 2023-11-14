@@ -22,7 +22,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         throw error
       }
-      res.status(200).json(
+      return res.status(200).json(
         results.rows
       )
     })

@@ -1,5 +1,12 @@
 import { http } from '../core'
 import Link from 'next/link'
+
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'todolist'
+}
+
 async function getList() {
   const res = await http('/api/todolist')
   const data:TodoList[] = await res.data
@@ -13,7 +20,7 @@ export default async function TodoListPage(){
 
   return (<>
     {!todos&&<h4>loginData...</h4>}
-    {todos?.map((todo)=>(<li key={todo.todoid} >
+    {todos&&todos.map((todo)=>(<li key={todo.todoid} >
       {todo.title}
       {todo.startdate}
       {todo.enddate}
