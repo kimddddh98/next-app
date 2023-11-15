@@ -1,5 +1,6 @@
 
-import { http } from '../core';
+// import { http } from '../core';
+const baseUrl = process.env.NEXT_PUBLIC_API_PATH
 
 type DB = {
   id: number
@@ -12,8 +13,8 @@ type DB = {
 
 
 async function getData() {
-  const res = await http.post("/api/hello")
-  const data:DB[] = await res.data
+  const res = await fetch(baseUrl+"/api/hello",{method:"POST"})
+  const data:DB[] = await res.json()
   return data
 }
 

@@ -20,6 +20,7 @@ export default function TodoClient({todoProps}:{todoProps:TodoList}){
   }
 
   return(<>
+    {todo.title}-
     {todo.content}
     <p >{todo.isdone?'완료':'미완료'}</p>
     <input type="checkbox" checked={todo.isdone} onChange={check} />

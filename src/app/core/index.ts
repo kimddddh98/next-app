@@ -5,4 +5,6 @@ const http = axios.create({
     "Content-Type": "application/json",
   },
 });
-export {http}
+const baseUrl = process.env.NEXT_PUBLIC_API_PATH
+
+export {http, baseUrl}

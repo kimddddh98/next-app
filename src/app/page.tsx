@@ -1,8 +1,10 @@
-import { http } from './core'
+// import { http } from './core'
 import Image from 'next/image';
+const baseUrl = process.env.NEXT_PUBLIC_API_PATH
+
 async function loginData() {
-  const res = await http.post('/api/auth')
-  const data:User[] = await res.data
+  const res = await fetch(baseUrl+'/api/auth',{method:"POST"})
+  const data:User[] = await res.json()
   return data
 }
 

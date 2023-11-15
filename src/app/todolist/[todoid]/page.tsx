@@ -1,13 +1,21 @@
 import type { Metadata } from 'next'
-import { http } from '@/app/core'
-import TodoClient from '@/app/component/TodoClient'
-export async function generateStaticParams() {
-  const res =  await http('/api/todolist')
-  const posts:TodoList[] =  await res.data
-  return posts.map((post) => ({
-    todoid: post.todoid.toString()
-  }))
-}
+import TodoClient from '@/app/components/TodoClient'
+
+const baseUrl = process.env.NEXT_PUBLIC_API_PATH
+
+
+
+// export async function getStaticPaths() {
+// 	const { data }:{data:TodoList[]} = await http('/api/todolist')
+
+// 	return {
+// 		fallback: false,
+// 		paths: data?.map(todolist => ({
+// 			params: { todoidid: todolist.todoid },
+// 		})),
+// 	}
+// }
+
 
 export const generateMetadata = async ({ params }: {params:{todoid:string}}): Promise<Metadata> => {
 	return {
@@ -17,9 +25,9 @@ export const generateMetadata = async ({ params }: {params:{todoid:string}}): Pr
 }
 
 async function getTodo(params:string) {
-  const res = await http(`/api/todolist?todoid=${params}`)
+  const res = await fetch(baseUrl+`/api/todolist?todoid=${params}`)
 
-  const data:TodoList = await res.data
+  const data:TodoList = await res.json()
   return data
 }
 
@@ -33,4 +41,12 @@ export default async function  TodoDetail({params}:{params:{todoid:string}}){
     <TodoClient todoProps={todo}/>
     </>
   )
+}
+
+export async function generateStaticParams() {
+  const res =  await fetch(baseUrl+'/api/todolist')
+  const posts:TodoList[] =  await res.json()
+  return posts.map((post) => ({
+    params: { todoid: post.todoid.toString() },
+  }))
 }

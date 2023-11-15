@@ -1,4 +1,4 @@
-import NavBar from '@/app/component/NavBar'
+import NavBar from '@/app/components/NavBar'
 import SideBar from './SideBar'
 
 
