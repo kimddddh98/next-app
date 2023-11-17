@@ -2,9 +2,14 @@
 
 import { useState } from 'react'
 import { http } from '../core'
-
+import { useRouter } from 'next/navigation'
+// type TodoF{
+//   o
+// }
 export default function TodoClient({todoProps}:{todoProps:TodoList}){
   const [todo,setTodo] =  useState(todoProps)
+  const router = useRouter()
+
   function check(){
     
     setTodo({
@@ -15,7 +20,8 @@ export default function TodoClient({todoProps}:{todoProps:TodoList}){
     
   }
   function submit(){
-    http.post('/api/todolist',todo).then(e=>console.log(e))
+    http.post('/api/todolist',todo).then(e=>router.refresh())
+
 
   }
 
