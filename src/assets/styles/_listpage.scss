@@ -1,0 +1,10 @@
+.list_wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .todolist{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

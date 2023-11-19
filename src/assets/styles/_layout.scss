@@ -1,0 +1,22 @@
+html,body,.wrap{
+  width: 100%;
+  height: 100%;
+}
+.wrap{
+  background: #f4f4f4;
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+}
+.side_bar{
+  height: 100%;
+  width: 200px;
+  padding: 20px 10px;
+  @include shadowBox;
+
+}
+.side_bar + div{
+  flex: 1;
+  @include shadowBox;
+  padding: 20px 10px;
+}
