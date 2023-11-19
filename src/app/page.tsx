@@ -12,10 +12,10 @@ async function loginData() {
 export default async function App() {
   const userInfo = await loginData()
   return (
-    <main className='wrap'>
+    <div className='home'>
       <Image src='/next.svg' alt='' width={120} height={100}/>
       {userInfo[0].name}
       {userInfo[0].password}
-    </main>
+    </div>
   )
 }

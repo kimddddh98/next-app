@@ -14,7 +14,10 @@ async function getList() {
 
 export default async function TodoListPage(){
   const todos:TodoList[] = await getList()
-  return (<ul>
+  return (<>
+  <div className="list_wrap">
+  <h4>나의 할일</h4>
+  <ul className='todolist'>
     {!todos&&<li>loginData...</li>}
     {todos&&todos.map((todo)=>(
     <li key={todo.todoid} >
@@ -22,11 +25,11 @@ export default async function TodoListPage(){
       {todo.startdate}
       {todo.enddate}
       {todo.isdone}
-
       {todo.todoid&& <Link href={`/todolist/${todo.todoid}`}>상세보기</Link>}
-     
-      
     </li>
     ))}
-  </ul>)
+  </ul>
+  </div>
+  
+  </>)
 }

@@ -1,4 +1,3 @@
-import NavBar from '@/app/components/NavBar'
 import SideBar from './SideBar'
 
 
@@ -9,7 +8,6 @@ export default async function PageLayout({
 
 }) {
   return (<>
-    <NavBar/>
     <SideBar userInfo={userInfo}/>
   </>
   )

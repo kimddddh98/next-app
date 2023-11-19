@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 // import './globals.css'
 // import { http } from '@/app/core'
-import '@/app/main.scss'
+import '@/assets/main.scss'
 import PageLayout from '@/app/components/PageLayout'
 import { baseUrl } from '@/app/core'
 export const metadata: Metadata = {
@@ -27,8 +27,10 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body >
-        <PageLayout userInfo={userInfo[0]}/>
-        {children}
+        <div className="wrap">
+          <PageLayout userInfo={userInfo[0]}/>
+          {children}
+        </div>
       </body>
     </html>
   )
