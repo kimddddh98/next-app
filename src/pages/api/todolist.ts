@@ -12,39 +12,16 @@ import {Client} from 'pg'
   client.connect()
 
 
-export default async function  handler(req:NextApiRequest,res:NextApiResponse){
-  if(req.method === "GET"){
-    if(req.query.todoid){
-     client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,result)=>{
-        if(err){
-          return res.json({erorr:err})
-        }
-        else{
-          const [row] = result.rows 
-          return res.json(row)
-        }
-      })
+export default async function handler (req:NextApiRequest,res:NextApiResponse){
+  console.log('get')
+  client.query(`select * from todolist`,(err,result)=>{
+    if(err){
+      return res.json({erorr:err})
     }
     else{
-       client.query(`select * from todolist`,(err,result)=>{
-        if(err){
-          return res.json({erorr:err})
-        }
-        else{
-          return res.json(result.rows)
-        }
-      })
+      return res.json(result.rows)
     }
-  }
-  else {
-    const body :TodoList = req.body
-    console.log(body)
-    client.query(`update todolist set isdone = ${body.isdone} where todoid = ${body.todoid}`,(err,result)=>{
-      if(err) res.json({error:err})
-      else{
-        res.json({m:'수정완료',result:result.rows})
-      }
-    })
-  }
+  })
 
 }
+

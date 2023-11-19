@@ -19,7 +19,7 @@ export const generateMetadata = async ({ params }: {params:{todoid:string}}): Pr
 }
 
 async function getTodo(params:string) {
-  const res = await fetch(baseUrl+`/api/todolist?todoid=${params}`,{next:{revalidate:1}})
+  const res = await fetch(baseUrl+`/api/todolist/${params}`,{next:{revalidate:1}})
 
   const data:TodoList = await res.json()
   return data

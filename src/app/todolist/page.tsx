@@ -14,8 +14,8 @@ async function getList() {
 
 export default async function TodoListPage(){
   const todos:TodoList[] = await getList()
-  return (<>
-    {!todos&&<h4>loginData...</h4>}
+  return (<ul>
+    {!todos&&<li>loginData...</li>}
     {todos&&todos.map((todo)=>(
     <li key={todo.todoid} >
       {todo.title}
@@ -28,5 +28,5 @@ export default async function TodoListPage(){
       
     </li>
     ))}
-  </>)
+  </ul>)
 }
