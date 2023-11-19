@@ -15,27 +15,32 @@ import {Client} from 'pg'
 
 // get
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
-  console.log('[todoid]')
-  if(req.method==='GET'){
-    client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,result)=>{
-      if(err){
-        return NextResponse.json({erorr:err})
-      }
-      else{
-        const [row] = result.rows 
-        return res.json(row)
-      }
-    })
-  }
-  else{
-    const body :TodoList = req.body
-    console.log(body)
-    client.query(`update todolist set isdone = ${body.isdone} where todoid = ${body.todoid}`,(err,result)=>{
-      if(err) res.json({error:err})
-      else{
-        res.json({m:'수정완료',result:result.rows})
-      }
-    })
+
+  switch(req.method){
+    case "GET" :
+      client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,result)=>{
+        if(err){
+          return NextResponse.json({erorr:err})
+        }
+        else{
+          const [row] = result.rows 
+          return res.json(row)
+        }
+      });
+      break;
+      case "POST" :
+        const body :TodoList = req.body
+        client.query(`update todolist set isdone = ${body.isdone} where todoid = ${body.todoid}`,(err,result)=>{
+          if(err) res.json({error:err})
+          else{
+            res.json({m:'수정완료',result:result.rows})
+          }
+        });
+      break
+      
+      default :
+      res.status(400).json({message:'잘못된 요청'})
+      
   }
 }
 // post
