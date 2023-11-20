@@ -20,7 +20,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     case "GET" :
       client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,result)=>{
         if(err){
-          return NextResponse.json({erorr:err})
+          return res.json({erorr:err})
         }
         else{
           const [row] = result.rows 

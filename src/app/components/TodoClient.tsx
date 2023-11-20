@@ -20,7 +20,7 @@ export default function TodoClient({todoProps}:{todoProps:TodoList}){
       .then(e=>{
         console.log(e.data)
         router.refresh()
-      })
+    })
   }
 
   return(<>

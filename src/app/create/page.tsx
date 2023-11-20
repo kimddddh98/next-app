@@ -1,36 +1,20 @@
-
-// import { http } from '../core';
-const baseUrl = process.env.NEXT_PUBLIC_API_PATH
-
-type DB = {
-  id: number
-  title: string
-  body: string,
-  created: string
+import { Metadata } from 'next'
+import CreateClient from '../components/page/CreateClient'
+export const metadata: Metadata = {
+  title: '할 일 작성'
 }
 
 
-
-
-async function getData() {
-  const res = await fetch(baseUrl+"/api/hello",{method:"POST"})
-  const data:DB[] = await res.json()
-  return data
-}
 
 export default async function createPage(){
-  const data = await getData()
+  // const data = await getData()
 
-  return(<>
+  return(
+  <div>
+    <h4>할 일 작성</h4>
+    <CreateClient/>
+  </div>)
 
-    <ul>
-    {data.map(day=>(
-              <li key={day.id} value={day.body}>{day.title
-              
-              }{day.title}</li>
-          ))}
-    </ul>
-  </>)
 }
 
 

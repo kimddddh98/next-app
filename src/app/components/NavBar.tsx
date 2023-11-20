@@ -15,6 +15,10 @@ export default function NavBar(){
         className={path?.includes('todolist')?style.active:''}>
         전체 할 일 보기
       </Link>
+      <Link href='/create' 
+        className={path?.includes('create')?style.active:''}>
+        글 작성
+      </Link>
 
       {/* <Link href="/create" className={path==='/create'?style.active:''}>
         create

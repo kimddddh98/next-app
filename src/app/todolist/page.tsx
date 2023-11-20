@@ -1,5 +1,6 @@
 import Link from 'next/link'
-const baseUrl = process.env.NEXT_PUBLIC_API_PATH
+import { baseUrl } from '../core'
+// const baseUrl = process.env.NEXT_PUBLIC_API_PATH
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 async function getList() {
-  const res = await fetch(baseUrl+'/api/todolist')
+  const res = await fetch(baseUrl+'/api/todolist',{next:{revalidate:0}})
   const data:TodoList[] = await res.json()
   return data
 }
