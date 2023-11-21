@@ -8,6 +8,7 @@ export default function NavBar(){
   return(<>
     <nav className={style.navBar}>
       <Link href="/" 
+
         className={path==='/'?style.active:''}>
         home
       </Link>

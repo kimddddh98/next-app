@@ -4,16 +4,49 @@
   gap: 12px;
   .todolist{
     display: flex;
-    // justify-content: flex-start;
-    // flex: 1;
+    flex: 1;
+    overflow-y: auto;
     flex-wrap: wrap;
     align-self: center;
     gap: 8px;
     li{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
       width: 300px;
       height: 200px;
       padding: 8px;
       @include shadowBox;
     }
   }
+}
+.label{
+  width: 42px;
+  height: 21px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.7);
+  position: relative;
+  &.check{
+    background: #35dd29;
+  }
+  input[type=checkbox]{
+    display: none;
+  }
+  span{
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  input[type=checkbox]:checked + span{
+    left: unset;
+    right: 4px;
+  }
+
+
 }
