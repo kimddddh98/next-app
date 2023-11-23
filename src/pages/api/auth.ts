@@ -18,11 +18,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (method === 'POST') {
     client.query('SELECT * FROM usertable', (error, results) => {
       if (error) {
-        res.status(400)
-
-        throw error
+        res.status(500).end()
+      
       }
-      return res.status(200).json(
+        res.status(200).json(
         results.rows
       )
     })
@@ -33,9 +32,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
       
       if (err) {
-        res.status(400)
-        throw err
-        
+        res.status(500).end()
       }
       res.status(200).json(
         result.rows
@@ -44,9 +41,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     })
   }
   else{
-    res.status(400)
-
+    res.status(400).end()
   }
 
 }
+
 

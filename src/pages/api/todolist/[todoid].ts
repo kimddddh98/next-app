@@ -20,20 +20,20 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     case "GET" :
       client.query(`select * from todolist where todoid = ${req.query.todoid}`,(err,result)=>{
         if(err){
-          return res.json({erorr:err})
+          res.status(500).json({message:err})
         }
         else{
           const [row] = result.rows 
-          return res.json(row)
+          res.status(200).json(row)
         }
       });
       break;
       case "POST" :
         const body :TodoList = req.body
         client.query(`update todolist set isdone = ${body.isdone} where todoid = ${body.todoid}`,(err,result)=>{
-          if(err) res.json({error:err})
+          if(err) res.status(500).json({message:err})
           else{
-            res.json({m:'수정완료',result:result.rows})
+            res.status(200).json({m:'수정완료',result:result.rows})
           }
         });
       break
@@ -43,4 +43,4 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
       
   }
 }
-// post
+

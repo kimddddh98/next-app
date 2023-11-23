@@ -23,9 +23,9 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     const body :Body = req.body
     console.log(body)
     client.query(`update todolist set isdone = ${body.isdone} where todoid = ${body.todoid}`,(err,result)=>{
-      if(err) res.json({error:err})
+      if(err) res.status(500).json({message:err})
       else{
-        res.json({m:'수정완료',result:result.rows})
+        res.json({message:'수정완료',result:result.rows})
       }
     });
   }
@@ -33,3 +33,5 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
 
 }
 // post
+
+

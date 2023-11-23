@@ -13,9 +13,7 @@ export default async function App() {
   const userInfo = await loginData()
   return (
     <div className='home'>
-      <Image src='/next.svg' alt='' width={120} height={100}/>
-      {userInfo[0].name}
-      {userInfo[0].password}
+      홈
     </div>
   )
 }

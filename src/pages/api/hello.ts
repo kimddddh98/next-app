@@ -18,6 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (method === 'POST') {
     client.query('SELECT * FROM topic', (error, results) => {
       if (error) {
+        res.status(500).end()
         throw error
       }
       res.status(200).json(
@@ -33,4 +34,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
 }
+export const api = {
+  externalResolver: true,
+};
 

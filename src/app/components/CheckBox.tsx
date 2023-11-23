@@ -2,13 +2,15 @@
 import { useState } from 'react'
 import { http } from '../core'
 import { useRouter } from 'next/navigation'
-import Loading from '../todolist/loading'
 
 export default function CheckBox({todoId,todoIsDone}:{todoId:number,todoIsDone:boolean}){
   const router = useRouter()  
   const [isDone,setIsDone]= useState(todoIsDone)
   const [isLoading,setLoading] = useState(false)
   const changeIsDone = async () => {
+    if(isLoading){
+      return
+    }
     setLoading(true)
     const res = await http.post('/api/todolist/isdone',
     {
@@ -24,16 +26,15 @@ export default function CheckBox({todoId,todoIsDone}:{todoId:number,todoIsDone:b
   }
   return(
     <>
-    {isLoading&&<Loading/>}
-    {!isLoading&&<label htmlFor={todoId.toString()} 
+    <label htmlFor={todoId.toString()} 
       className={isDone?'check label':'label'}>
         <input type="checkbox" id={todoId.toString()}  checked={isDone}
-      onChange={()=>changeIsDone()}
+        disabled={isLoading}
+        onChange={()=>changeIsDone()}
       />
       <span></span>
-    </label>}
+    </label>
+
     </>
-    
-   
   )
 }

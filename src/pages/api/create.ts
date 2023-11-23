@@ -30,7 +30,7 @@ export default async function handler (req:NextApiRequest,res:NextApiResponse){
       '${body.enddate}',
       ${body.userid}
     )`,(err,result)=>{
-      if(err) res.json({error:err})
+      if(err) res.status(500).json({message:err})
       else{
         res.status(200).json({m:'수정완료',result:result.rows})
       }

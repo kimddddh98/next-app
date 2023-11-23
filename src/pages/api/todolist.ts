@@ -13,15 +13,18 @@ import {Client} from 'pg'
 
 
 export default async function handler (req:NextApiRequest,res:NextApiResponse){
-  console.log('get')
-  client.query(`select * from todolist`,(err,result)=>{
+  client.query(`select * from todolist order by todoid desc limit 5`,(err,result)=>{
     if(err){
-      return res.json({erorr:err})
+      res.status(500).json({message:err})
+      
     }
     else{
-      return res.json(result.rows)
+      res.status(200).json(result.rows)
     }
   })
 
 }
+
+
+
 

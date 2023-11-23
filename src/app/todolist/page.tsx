@@ -3,8 +3,7 @@ import { baseUrl } from '../core'
 // const baseUrl = process.env.NEXT_PUBLIC_API_PATH
 import { Metadata } from 'next'
 import CheckBox from '../components/CheckBox'
-import { Suspense } from 'react'
-import Loading from './loading'
+import Observer from '../components/Observer'
 export const metadata: Metadata = {
   title: 'todolist'
 }
@@ -30,18 +29,20 @@ export default async function TodoListPage(){
         {todo.startdate} 부터
         {todo.enddate} 까지
       </p>
-      <Suspense fallback={<Loading/>}>
-        <CheckBox todoId={todo.todoid} todoIsDone={todo.isdone}/>
-      </Suspense>
+      
+      <CheckBox todoId={todo.todoid} todoIsDone={todo.isdone}/>
+
       
 
 
-      {todo.todoid&& <Link href={`/todolist/${todo.todoid}`}
+      {todo.todoid&& <Link href={`/todolist/${todo.todoid}`} className='btn-ty-01'
       >상세보기</Link>}
     </li>
     ))}
+    <Observer/>
   </ul>
   </div>
+
   
   </>)
 }

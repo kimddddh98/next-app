@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-// import './globals.css'
-// import { http } from '@/app/core'
+import { Suspense } from 'react'
+import Loading from '@/app/loading'
 import '@/assets/main.scss'
 import PageLayout from '@/app/components/PageLayout'
 import { baseUrl } from '@/app/core'
@@ -28,8 +28,10 @@ export default async function RootLayout({
     <html lang="ko">
       <body >
         <div className="wrap">
-          <PageLayout userInfo={userInfo[0]}/>
-          {children}
+          <Suspense fallback={<Loading/>}>
+            <PageLayout userInfo={userInfo[0]}/>
+            {children}
+          </Suspense>
         </div>
       </body>
     </html>
