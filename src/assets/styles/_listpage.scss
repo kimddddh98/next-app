@@ -86,10 +86,14 @@
   }
 }
 
-
-.prev:hover:after {
-  -webkit-transform: scale(2) rotate(-180deg);
-  transform: scale(2) rotate(-180deg);
-  background: #fff;
+.observer{
+  width: auto !important;
+  height: auto !important;
+  opacity: 0 !important;
 }
+// .prev:hover:after {
+//   -webkit-transform: scale(2) rotate(-180deg);
+//   transform: scale(2) rotate(-180deg);
+//   background: #fff;
+// }
 
