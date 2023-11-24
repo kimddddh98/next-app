@@ -3,14 +3,14 @@ import type { NextApiRequest, NextApiResponse  } from 'next'
 
 import {Client} from 'pg'
 
-  const client = new Client({
-    user: "postgres",
-    host: "localhost",
-    database: process.env.NEXT_PUBLIC_POSTGRES_DATABASE,
-    password: process.env.NEXT_PUBLIC_POSTGRES_PASSWORD,
-    port:  process.env.NEXT_PUBLIC_POSTGRES_PORT,
-    
-  });
+const client = new Client({
+  user: process.env.NEXT_PUBLIC_POSTGRES_USER,
+  host: process.env.NEXT_PUBLIC_POSTGRES_DATABASE_HOST,
+  database: process.env.NEXT_PUBLIC_POSTGRES_DATABASE,
+  password: process.env.NEXT_PUBLIC_POSTGRES_PASSWORD,
+  port:  process.env.NEXT_PUBLIC_POSTGRES_PORT,
+  ssl:true
+});
   client.connect()
 
 // get

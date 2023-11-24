@@ -9,7 +9,7 @@ export default function ListClient({listLength}:{listLength:number}){
   // const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState(1)
   const loader = useRef<HTMLLIElement>(null);
-const observer = useRef<IntersectionObserver | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
   
   const call = async(page:number)=>{
     if(listLength<page*5) return
