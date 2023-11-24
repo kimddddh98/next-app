@@ -11,14 +11,6 @@ async function getList() {
 export default async function SideBar({userInfo}:{userInfo:User}){
   const todos = await getList()
   const today = todos.filter(todo=>todo.startdate === dayjs(new Date).format('YYYY-MM-DD'))
-  // const [todoLength,setLength] = useState(0)
-  // useEffect(()=>{
-  //   (async ()=>{
-  //     const res = await http('/api/todolist')
-  //     const data:TodoList[] = await res.data
-  //     setLength(data.length)
-  //   })();
-  // },[])
 
   return <>
     <nav className='side_bar'>

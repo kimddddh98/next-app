@@ -13,28 +13,14 @@ import {Client} from 'pg'
 
 
 export default async function handler (req:NextApiRequest,res:NextApiResponse){
-  if(req.method === 'POST'){
-    const page = req.body.page * 5
-    console.log(page)
-
-    client.query(`select * from todolist order by todoid limit 5 offset ${page}`,(err,result)=>{
-      if(err){
-        res.status(500).json({message:err})
-      }
-      else{
-        res.status(200).json(result.rows)
-      }
-    })
-  }
-  else if(req.method === 'GET'){
-    console.log('else')
-    client.query(`select * from todolist order by todoid desc`,(err,result)=>{
+  if(req.method === 'GET'){
+    client.query(`select * from todolist`,(err,result)=>{
       if(err){
         res.status(500).json({message:err})
         
       }
       else{
-        res.status(200).json(result.rows)
+        res.status(200).json(result.rowCount)
       }
     })
   }

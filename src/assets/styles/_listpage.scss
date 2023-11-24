@@ -9,6 +9,8 @@
     flex-wrap: wrap;
     align-self: center;
     gap: 8px;
+    position: relative;
+    height: 100%;
     li{
       display: flex;
       flex-direction: column;
@@ -18,6 +20,14 @@
       height: 400px;
       padding: 8px;
       @include shadowBox;
+      &.observer{
+        min-width: unset;
+        width: 100%;
+        height: 1px;
+        padding: 0;
+        background-color: red;
+
+      }
     }
   }
 }
@@ -86,14 +96,5 @@
   }
 }
 
-.observer{
-  width: auto !important;
-  height: auto !important;
-  opacity: 0 !important;
-}
-// .prev:hover:after {
-//   -webkit-transform: scale(2) rotate(-180deg);
-//   transform: scale(2) rotate(-180deg);
-//   background: #fff;
-// }
+
 

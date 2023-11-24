@@ -13,6 +13,7 @@ import {Client} from 'pg'
 
   type TodoCreate = Omit<TodoList, "todoid" | "isdone">;
 export default async function handler (req:NextApiRequest,res:NextApiResponse){
+  
   const {method} = req
   if(method === "POST"){
     const body :TodoCreate = req.body 
@@ -30,7 +31,10 @@ export default async function handler (req:NextApiRequest,res:NextApiResponse){
       '${body.enddate}',
       ${body.userid}
     )`,(err,result)=>{
-      if(err) res.status(500).json({message:err})
+      if(err) {
+        console.log(err)
+        res.status(500).json({message:err})
+      }
       else{
         res.status(200).json({m:'수정완료',result:result.rows})
       }
