@@ -4,33 +4,36 @@ import Link from 'next/link'
 import CheckBox from '@/app/components/CheckBox'
 
 
-export default function ListClient({listLength}:{listLength:number}){
+export default function ListClient({listPageId}:{listPageId:number}){
   const [todoList,setTodo] = useState<TodoList[]>([])
   // const [loading, setLoading] = useState<boolean>(false);
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState<number>(listPageId)
   const loader = useRef<HTMLLIElement>(null);
   const observer = useRef<IntersectionObserver | null>(null);
   
-  const call = async(page:number)=>{
-    if(listLength<page*5) return
+  const call = async()=>{
+    if(page<5) return
     const res = await fetch('/api/todolist',{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        page:page ,
+        page:page,
       }),
     })
     const data = await res.json()
     setTodo([...todoList,...data])
-    setPage((prevPage) => prevPage + 1);
+    setPage((pn)=> pn-5)
+   
+    // setPage((prevPage) => prevPage + 1);
   }
+
   useEffect(()=>{
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         // fetchItems();
-        call(page)
+        call()
       }
     });
 
@@ -44,7 +47,9 @@ export default function ListClient({listLength}:{listLength:number}){
       }
     };
   },[page])
-
+  useEffect(()=>{
+    setPage(()=>listPageId)
+  },[])
 
 //  무한 스크롤
 
@@ -63,7 +68,7 @@ export default function ListClient({listLength}:{listLength:number}){
       >상세보기</Link>}
 
       </li>))}      
-      <li ref={loader} className='observer'> {listLength<page*5&&'마지막 페이지 입니다.'}</li>
+      <li ref={loader} className='observer'> bbb</li>
 
       {/* <Observer listLength={listLength} loading={loading} setLoading={setLoading()}/> */}
     </>

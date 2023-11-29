@@ -14,17 +14,34 @@ const client = new Client({
 
 export default async function handler (req:NextApiRequest,res:NextApiResponse){
   if(req.method === 'POST'){
-    const page = req.body.page * 5
-    console.log(page)
-
-    client.query(`select * from todolist order by todoid limit 5 offset ${page}`,(err,result)=>{
-      if(err){
-        res.status(500).json({message:err})
-      }
-      else{
-        res.status(200).json(result.rows)
-      }
-    })
+    let page = req.body.page; 
+    if(page === 0){
+      client.query(`select * from todolist 
+      where todoid > ${page}
+      ORDER BY todoid desc
+      limit 5`,(err,result)=>{
+        if(err){
+          res.status(500).json({message:err})
+        }
+        else{
+          res.status(200).json(result.rows)
+        }
+      })
+    }
+    else{
+      client.query(`select * from todolist 
+      where todoid < ${page}
+      ORDER BY todoid desc
+      limit 5`,(err,result)=>{
+        if(err){
+          res.status(500).json({message:err})
+        }
+        else{
+          res.status(200).json(result.rows)
+        }
+      })
+    }
+   
   }
   else if(req.method === 'GET'){
     console.log('else')

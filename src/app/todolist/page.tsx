@@ -55,7 +55,7 @@ export default async function TodoListPage(){
       >상세보기</Link>}
     </li>
     ))}
-    <ListClient listLength={todosLength}/>
+    <ListClient listPageId={todos[todos.length-1].todoid}/>
     
   </ul>
   </div>
