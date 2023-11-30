@@ -5,18 +5,41 @@ html,body,.wrap{
 .wrap{
   background: #f4f4f4;
   display: flex;
-  gap: 12px;
-  padding: 8px;
+  // gap: 12px;
+  // padding: 8px;
 }
 .side_bar{
   height: 100%;
   width: 200px;
   padding: 20px 10px;
-  @include shadowBox;
-
+  border-right: 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  @include borderBox;
+  .side_header{
+    padding: 0 4px;
+  }
 }
 .side_bar + div{
   flex: 1;
-  @include shadowBox;
-  padding: 20px 10px;
+  background: #fff;
+  // @include borderBox;
+  padding: 20px;
+}
+.btn_ty_01{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  padding: 0 12px;
+  @include font(14px,500);
+  &:hover{
+    background:$greyOpa;
+  }
+  &.active{
+    background: $hoverColor;
+  }
+  
 }

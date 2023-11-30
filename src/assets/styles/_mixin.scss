@@ -1,13 +1,31 @@
 $font:'Nanum Gothic',sans-serif;
+$greyOpa:rgba(25,25,25,0.05);
+$mainColor : #4b91ed;
+$fontColor:#333;
+$hoverColor : rgb(71, 113, 250, 0.2);
+
 @mixin flexCenter(){
   display: flex;
   justify-content: center;
   align-items: center;
   @content
 };
+@mixin borderBox{
+  // border-radius: 8px;
+  background: #fff;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-color: $greyOpa;
+}
+
 @mixin shadowBox{
   border-radius: 8px;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-$mainColor : #4b91ed;
+
+@mixin font($size: 16px,$weight: 400,$color: $fontColor){
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
