@@ -23,19 +23,13 @@ async function getList() {
   const data:TodoList[] = await res.json()
   return data
 }
-async function getListLength() {
-  const res = await fetch(baseUrl+'/api/todolist/length',{
-    next:{revalidate:1},
-  })
-  const data:number = await res.json()
-  return data
-}
+
 
 
 
 export default async function TodoListPage(){
   const todos:TodoList[] = await getList()
-  const todosLength = await getListLength()
+  // const todosLength = await getListLength()
   return (<>
   <div className="list_wrap">
   <h4>나의 할일</h4>

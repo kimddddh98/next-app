@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {Client} from 'pg'
+import dayjs from 'dayjs';
 
 const client = new Client({
   user: process.env.NEXT_PUBLIC_POSTGRES_USER,
@@ -13,15 +14,18 @@ const client = new Client({
 
 
 export default async function handler (req:NextApiRequest,res:NextApiResponse){
+  const today = dayjs(new Date()).format('YYYY-MM-DD')
   if(req.method === 'GET'){
-    client.query(`select * from todolist`,(err,result)=>{
-      if(err){
-        res.status(500).json({message:err})
-        
-      }
-      else{
-        res.status(200).json(result.rowCount)
-      }
+    const data = await Promise.all([
+      client.query('SELECT * FROM todolist'),
+      client.query(`
+      SELECT * FROM todolist
+      WHERE enddate = '${today}'`),
+    ])
+    const [allList,todayList] =  data
+    res.status(200).json({
+      allList: allList.rowCount,
+      todayList:todayList.rowCount
     })
   }
   else{

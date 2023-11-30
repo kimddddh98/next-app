@@ -16,4 +16,8 @@ interface TodoList{
   todoid : number
   userid : number
 }
+interface todoLength{
+  allList: number
+  todayList:number
+}
 

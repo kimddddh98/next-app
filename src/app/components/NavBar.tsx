@@ -3,22 +3,29 @@ import Link from 'next/link'
 import style from '@/assets/styles/navBar.module.scss'
 import { usePathname } from 'next/navigation';
 
-export default function NavBar(){
+export default function NavBar({allList,todayList}:todoLength){
   const path =usePathname()
   return(<>
     <nav className={style.navBar}>
       <Link href="/" 
-
-        className={path==='/'?style.active:''}>
-        home
+        className={'btn_ty_01 ' + (path==='/'?'active':'')}>
+        Home
       </Link>
       <Link href='/todolist' 
-        className={path?.includes('todolist')?style.active:''}>
-        전체 할 일 보기
+        className={'btn_ty_01 '+ (path?.includes('todolist')?'active':'')}>
+        All List : {allList}
       </Link>
       <Link href='/create' 
-        className={path?.includes('create')?style.active:''}>
-        글 작성
+        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
+        add
+      </Link>
+      <Link href='/create' 
+        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
+        Today : {todayList}
+      </Link>
+      <Link href='/create' 
+        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
+        Next 7 Days
       </Link>
 
       {/* <Link href="/create" className={path==='/create'?style.active:''}>

@@ -24,12 +24,18 @@ export default function TodoClient({todoProps}:{todoProps:TodoList}){
   }
 
   return(<>
-    {todo.title}
-    {todo.content}
-    {todo.enddate}
-    <p >{todo.isdone?'완료':'미완료'}</p>
-    <input type="checkbox" checked={todo.isdone} onChange={check} />
-    <button type="button" onClick={submit}>전송</button>
+    <p>제목 {todo.title}</p>
+    <p>내용 {todo.content}</p>
+    <p>제목 {todo.title}</p>
+    <p>{todo.startdate} 부터 {todo.enddate} 까지</p>
+    <p >
+      <input type="checkbox" checked={todo.isdone} onChange={check} />
+      {todo.isdone?'완료':'미완료'}
+      </p>
+   <p>
+   <button type="button" onClick={submit}>전송</button>
+
+   </p>
   </>)
 
 }
