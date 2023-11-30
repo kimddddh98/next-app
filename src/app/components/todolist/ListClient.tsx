@@ -12,7 +12,7 @@ export default function ListClient({listPageId}:{listPageId:number}){
   const observer = useRef<IntersectionObserver | null>(null);
   
   const call = async()=>{
-    if(page<5) return
+    if(page<1) return
     const res = await fetch('/api/todolist',{
       method: "POST",
       headers: {
