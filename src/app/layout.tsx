@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   },
   description: 'my first next app',
 }
-async function loginData() {
-  const res = await fetch(baseUrl+'/api/auth',{method:"POST"})
-  const data:User[] = await res.json()
-  return data
-}
+
 
 
 export default async function RootLayout({
@@ -23,15 +19,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const userInfo = await loginData()
   return (
     <html lang="ko">
       <body >
         <div className="wrap">
-          <Suspense fallback={<Loading/>}>
-            <PageLayout userInfo={userInfo[0]}/>
+            <PageLayout/>
             {children}
-          </Suspense>
         </div>
       </body>
     </html>

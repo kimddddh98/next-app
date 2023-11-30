@@ -1,14 +1,9 @@
 import SideBar from './SideBar'
 
 
-export default async function PageLayout({
-  userInfo
-}: {
-  userInfo:User
-
-}) {
+export default async function PageLayout() {
   return (<>
-    <SideBar userInfo={userInfo}/>
+    <SideBar/>
   </>
   )
 }

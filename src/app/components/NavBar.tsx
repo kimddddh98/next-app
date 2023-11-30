@@ -13,31 +13,12 @@ export default function NavBar({allList,todayList}:todoLength){
       </Link>
       <Link href='/todolist' 
         className={'btn_ty_01 '+ (path?.includes('todolist')?'active':'')}>
-        All List : {allList}
+        All List  <span>{allList}</span>
       </Link>
-      <Link href='/create' 
-        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
-        add
+      <Link href='/today' 
+        className={'btn_ty_01 '+ (path?.includes('today')?'active':'')}>
+        Today : <span>{todayList}</span>
       </Link>
-      <Link href='/create' 
-        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
-        Today : {todayList}
-      </Link>
-      <Link href='/create' 
-        className={'btn_ty_01 '+ (path?.includes('create')?'active':'')}>
-        Next 7 Days
-      </Link>
-
-      {/* <Link href="/create" className={path==='/create'?style.active:''}>
-        create
-      </Link>
-      <Link href="/update" className={path==='/update'?style.active:''}>
-        update
-      </Link>
-      <Link href="/auth" className={path==='/auth'?style.active:''}>
-        auth
-      </Link> */}
-
     </nav>
   </>)
 }

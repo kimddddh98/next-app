@@ -15,10 +15,12 @@ html,body,.wrap{
   border-right: 1px solid;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   @include borderBox;
   .side_header{
-    padding: 0 4px;
+    padding: 0 4px 16px;
+    border-bottom: 1px solid $greyOpa;
+    @include font(20px,700)
   }
 }
 .side_bar + div{
@@ -42,4 +44,31 @@ html,body,.wrap{
     background: $hoverColor;
   }
   
+}
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  // border: none;
+  outline: none;  
+}
+.input_ty_01{
+  height: 40px;
+  background-color: $greyOpa;
+  border: 1px solid $greyOpa;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  padding: 0 12px;
+  &:focus,&:active{
+    border: 1px solid;
+  }
+}
+.create_form{
+  display: flex;
+  flex-direction: column;
+
+  input[type=text]{
+
+  }
 }

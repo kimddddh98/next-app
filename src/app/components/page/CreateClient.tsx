@@ -33,12 +33,12 @@ export default function CreateClient(){
   }
   return(
     <>
-      <form>
-        <label htmlFor="title">
-          할 일 제목
-          <input id="title" type="text"  value={title}
+      <form className='create_form'>
+        <input id="title" type="text"  
+            className='input_ty_01'
+            placeholder='+ 할 일 추가하기'
+            value={title}
             onChange={(e)=>setTitle(e.target.value)}/>
-        </label>  
         <label htmlFor="content">
           할 일 제목
           <input id="content" type="text"  value={content}
