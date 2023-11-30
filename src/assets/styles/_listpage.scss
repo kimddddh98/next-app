@@ -38,7 +38,7 @@
   background: rgba(0,0,0,0.7);
   position: relative;
   &.check{
-    background: #35dd29;
+    background: $mainColor;
   }
   input[type=checkbox]{
     display: none;

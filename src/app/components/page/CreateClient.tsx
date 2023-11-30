@@ -14,7 +14,12 @@ export default function CreateClient(){
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [isLoading,setLoading] = useState(false)
+
+  const enterPress = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key==='Enter') dataPost()
+  }
   const dataPost = async ()=>{
+    if(isLoading) return
     setLoading(true)
     const res = await http.post('/api/create',{
       title:title,
@@ -25,6 +30,7 @@ export default function CreateClient(){
     })
     const data = await res.data
     setLoading(false)
+    setTitle('')
 
     console.log(data)
 
@@ -38,11 +44,11 @@ export default function CreateClient(){
             className='input_ty_01'
             placeholder='+ 할 일 추가하기'
             value={title}
+            onKeyDown={enterPress}
             onChange={(e)=>setTitle(e.target.value)}/>
+        <input id="content" type="text"  value={content}
+        onChange={(e)=>setContent(e.target.value)}/>
         <label htmlFor="content">
-          할 일 제목
-          <input id="content" type="text"  value={content}
-            onChange={(e)=>setContent(e.target.value)}/>
         </label>  
         <DatePicker 
         dateFormat='yyyy-MM-dd'

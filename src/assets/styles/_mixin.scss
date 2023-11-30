@@ -1,8 +1,10 @@
 $font:'Nanum Gothic',sans-serif;
 $greyOpa:rgba(25,25,25,0.05);
-$mainColor : #4b91ed;
+$mainColor : #4772fa;
 $fontColor:#333;
+
 $hoverColor : rgb(71, 113, 250, 0.2);
+
 
 @mixin flexCenter(){
   display: flex;
